@@ -13,3 +13,51 @@
     ></app-recipe-item>
   </div>
 </div>
+<hr />
+<div class="row">
+  <div class="col-xs-12">
+    <ngx-table
+      [data]="recipes"
+      [columns]="['name', 'description', 'ingredients']"
+      class="test"
+      selectableKey="ingredients"
+      [formControl]="keyControl"
+      [selectable]="true"
+    >
+      <ngx-table-cell column="name">
+        <ng-template #headerTmpl> Name </ng-template>
+      </ngx-table-cell>
+
+      <ngx-table-cell column="description">
+        <ng-template #headerTmpl> Description </ng-template>
+      </ngx-table-cell>
+
+      <ngx-table-cell column="ingredients">
+        <ng-template #headerTmpl> Ingredients </ng-template>
+        <ng-template #cellTmpl let-ingredients>
+          <ng-container
+            *ngFor="let ingredient of ingredients; let index = index"
+          >
+            {{ ingredient.name }}{{ index < ingredients.length - 1 ? "," : "" }}
+          </ng-container>
+        </ng-template>
+      </ngx-table-cell>
+    </ngx-table>
+
+    Selected ingredients ({{ amountOfIngredients$ | async }}) :
+    <ng-container
+      *ngFor="let ingredients of keyControl.value; let index = index"
+    >
+      <ng-container *ngFor="let ingredient of ingredients; let index = index">
+        {{ ingredient.name }}{{ index < ingredients.length - 1 ? "," : "" }}
+      </ng-container>
+      {{ index < keyControl.value.length - 1 ? "," : "" }}
+    </ng-container>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col-xs-12">
+    <app-my-recipez></app-my-recipez>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<button (click)="addRecipe()">Add recipe</button>
+<button (click)="removeRecipe()">Remove</button>
+<button (click)="clearRecipes()">Clear</button>
+
+<div>
+  Current store recipez:
+  <app-recipe-item
+    *ngFor="let recipe of recipez$ | async; let i = index"
+    [recipe]="recipe"
+    [index]="i"
+  ></app-recipe-item>
+</div>

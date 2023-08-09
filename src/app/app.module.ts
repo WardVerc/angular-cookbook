@@ -21,6 +21,10 @@ import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AlertComponent } from './shared/alert/alert.component';
+import { NgxTableModule } from '@studiohyperdrive/ngx-table';
+import { StoreModule } from '@ngrx/store';
+import { recipezReducer } from './store/recipez.reducer';
+import { MyRecipezComponent } from './my-recipez/my-recipez.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,7 @@ import { AlertComponent } from './shared/alert/alert.component';
     AuthComponent,
     LoadingSpinnerComponent,
     AlertComponent,
+    MyRecipezComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,8 @@ import { AlertComponent } from './shared/alert/alert.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxTableModule,
+    StoreModule.forRoot({ recipez: recipezReducer }, {}),
   ],
   providers: [
     ShoppingListService,
