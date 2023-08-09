@@ -25,6 +25,8 @@ import { NgxTableModule } from '@studiohyperdrive/ngx-table';
 import { StoreModule } from '@ngrx/store';
 import { recipezReducer } from './store/recipez.reducer';
 import { MyRecipezComponent } from './my-recipez/my-recipez.component';
+import { reducers } from './recipe-store/recipe.store';
+import { RecipeStoreService } from './recipe-store/recipe.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,7 @@ import { MyRecipezComponent } from './my-recipez/my-recipez.component';
     HttpClientModule,
     ReactiveFormsModule,
     NgxTableModule,
-    StoreModule.forRoot({ recipez: recipezReducer }, {}),
+    StoreModule.forRoot({ recipez: recipezReducer, recipes: reducers }, {}),
   ],
   providers: [
     ShoppingListService,
@@ -62,6 +64,7 @@ import { MyRecipezComponent } from './my-recipez/my-recipez.component';
       useClass: AuthInterceptorService,
       multi: true,
     },
+    RecipeStoreService,
   ],
   bootstrap: [AppComponent],
 })
